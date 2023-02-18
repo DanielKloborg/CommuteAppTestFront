@@ -10,6 +10,7 @@ import { TodoService } from './services/todo.service';
 export class AppComponent {
   title = 'ToDo List';
   todolist: ToDo[] = [];
+  todoToEdit?: ToDo;
 
   constructor(private todoService: TodoService) {}
 
@@ -17,5 +18,17 @@ export class AppComponent {
     this.todoService
       .getToDoList()
       .subscribe((result: ToDo[]) => (this.todolist = result));
+  }
+
+  updateToDoList(todos: ToDo[]) {
+    this.todolist = todos;
+  }
+
+  initNewToDo() {
+    this.todoToEdit = new ToDo();
+  }
+
+  editToDo(todo: ToDo) {
+    this.todoToEdit = todo;
   }
 }

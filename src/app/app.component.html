@@ -1,20 +1,16 @@
-<table>
+<table cellpadding="5px">
   <thead>
-    <th></th>
-    <th>Notat</th>
+    <th style="text-align:start" width="40px">Nr:</th>
+    <th style="text-align:start; width:fit-content" >Notat</th>
+    <th style="display:inline-block"><button (click)="initNewToDo()">Opret ny notat</button></th>
   </thead>
   <tbody>
-    <tr *ngFor="let ToDo of todolist">
-      <td class="form-check">
-        <input
-          mdbCheckbox
-          class="form-check-input"
-          type="checkbox"
-          value=""
-          id="checkbox"
-        />
-      </td>
-      <td>{{ ToDo.note }}</td>
+    <tr *ngFor="let todo of todolist">
+      <td>{{todo.id}}</td>
+      <td style="flex-wrap:wrap; width:fit-content">{{ todo.note }}</td>
+      <td><button (click)="editToDo(todo)">Redigere</button></td>
     </tr>
   </tbody>
 </table>
+
+<app-edit-todo [todo]="todoToEdit" (todosUpdated)="updateToDoList($event)"></app-edit-todo>

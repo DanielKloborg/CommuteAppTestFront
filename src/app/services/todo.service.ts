@@ -10,7 +10,21 @@ export class TodoService {
 
   constructor(private http: HttpClient) { }
 
-  public getToDoList(): Observable<ToDo[]>{
-    return this.http.get<ToDo[]>(`https://localhost:7284/api/ToDo`);
+  private url = `https://localhost:7284/api/ToDo`;
+
+  public createToDoList(todo: ToDo): Observable<ToDo[]> {
+    return this.http.post<ToDo[]>(this.url, todo);
   }
+
+  public getToDoList(): Observable<ToDo[]>{
+    return this.http.get<ToDo[]>(this.url);
+  }
+
+  public updateToDoList(todo: ToDo): Observable<ToDo[]> {
+    return this.http.put<ToDo[]>(this.url, todo);
+  }
+
+  public deleteToDoList(todo: ToDo): Observable<ToDo[]> {
+    return this.http.delete<ToDo[]>(this.url + `/${todo.id}`);
+    }
 }
