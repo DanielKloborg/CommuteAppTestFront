@@ -1,10 +1,11 @@
 <div *ngIf="todo" id="editpage">
-  <h3>Notat nr: {{todo.id}}</h3>
+  <h3 *ngIf="todo.id">Notat nr. {{todo.id}}</h3>
+  <h3 *ngIf="!todo.id">Ny notat {{todo.id}}</h3>
   <div>
     Notat:
-    <input [(ngModel)]="todo.note" placeholder="Note" style="flex-wrap:wrap; width:200px"/>
+    <textarea [(ngModel)]="todo.note" placeholder="Note" id="textareaInput"></textarea>
   </div>
-  <button (click)="UpdateToDo(todo)" *ngIf="todo.id" style="margin-top:5px; margin-right:5px;">Gem</button>
-  <button (click)="DeleteToDo(todo)" *ngIf="todo.id" style="margin-top:5px">Slet</button>
-  <button (click)="CreateToDo(todo)" *ngIf="!todo.id" style="margin-top:5px">Opret</button>
+  <button (click)="UpdateToDo(todo)" *ngIf="todo.id">Gem</button>
+  <button (click)="DeleteToDo(todo)" *ngIf="todo.id">Slet</button>
+  <button (click)="CreateToDo(todo)" *ngIf="!todo.id">Opret</button>
 </div>
